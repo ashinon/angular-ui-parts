@@ -1,27 +1,17 @@
 # AngularUiParts
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.2.
+このプロジェクトは[Angular CLI](https://github.com/angular/angular-cli) version 14.2.2.で作成しています。
 
-## Development server
+任意のサイトやWebアプリケーションにて、WebComponentとして使用する事を目的としたUIパーツのコンポーネント集です。
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 参考サイト
+Angular Elementsについては下記サイトを参考にしました。
+[Angular Elements でのスタンドアロン サポートの開発者プレビュー](https://www.bitovi.com/blog/developer-preview-of-standalone-support-in-angular-elements)
 
-## Code scaffolding
+### WebConponentの出力方法
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+コマンド `ng build` にてソースをビルドした後、`npm run output`でファイル名「custom-element.js」が生成されます。
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### WebComponentのレンダリング方法
+WebConponentを使用するアプリケーションにて「custom-element.js」を読み込み、
+UIパーツを表示する箇所にカスタムHTMLタグ（main.tsにて宣言したタグ名）を記載してください。
