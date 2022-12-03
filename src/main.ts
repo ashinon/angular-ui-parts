@@ -5,19 +5,29 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
-import { InputComponent } from './app/input/input.component';
+import { CustomInputComponent } from './app/custom-input/custom-input.component';
+import { FormBuilder } from '@angular/forms';
 
 if (environment.production) {
   enableProdMode();
 }
-
+// NgModuleのBootstrap
 platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+  .catch((err: any) => console.error(err));
 
-createApplication({ providers: [] }).then((appRef) => {
-  // create a constructor of a custom element
-  const customInput = createCustomElement(InputComponent, { injector: appRef.injector });
 
-  // register in a browser
+(async () => {
+
+  const app = await createApplication({
+    providers: [
+      FormBuilder
+    ],
+  });
+
+  const customInput = createCustomElement(CustomInputComponent, {
+    injector: app.injector,
+  });
+
   customElements.define('custom-input', customInput);
-});
+
+})();

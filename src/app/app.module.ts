@@ -1,34 +1,35 @@
-// import { createCustomElement } '@angular/elements';
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MaterialExampleModule } from '../material.module';
+// import { CommonModule } from '@angular/common';
+import { Component, Inject, Injectable, } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { InputComponent } from './input/input.component';
-import { MatNativeDateModule } from '@angular/material/core';
+import { CustomInputComponent } from './custom-input/custom-input.component';
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
+import { AppComponent } from './app.component';
+import { CommonModule } from '@angular/common';
 
+import { FormsModule, ReactiveFormsModule, FormBuilder, NonNullableFormBuilder, FormControl, Validators, FormGroup  } from '@angular/forms';
+import { FloatLabelType, MatFormFieldAppearance, MatFormFieldModule } from '@angular/material/form-field';
+import { ThemePalette } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
     AppComponent,
-    InputComponent
+    InputComponent,
+    CustomInputComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
+    CommonModule,
     BrowserAnimationsModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatNativeDateModule,
-    MaterialExampleModule,
-
+    FormsModule, ReactiveFormsModule,
+    MatFormFieldModule, MatInputModule, MatIconModule
   ],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

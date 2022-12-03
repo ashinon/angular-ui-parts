@@ -1,158 +1,40 @@
-<!-- Form field appearance variants -->
-
-<p>
-  <mat-form-field appearance="fill">
-    <mat-label>Fill form field</mat-label>
-    <input matInput placeholder="Placeholder">
-    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    <mat-hint>Hint</mat-hint>
-  </mat-form-field>
-</p>
-<p>
-  <mat-form-field appearance="outline">
-    <mat-label>Outline form field</mat-label>
-    <input matInput placeholder="Placeholder">
-    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    <mat-hint>Hint</mat-hint>
-  </mat-form-field>
-</p>
-
-<!-- Form field with error messages -->
-
-<div class="example-container">
-  <mat-form-field appearance="fill">
-    <mat-label>Enter your email</mat-label>
-    <input matInput placeholder="pat@example.com" [formControl]="email" required>
-    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-  </mat-form-field>
-</div>
-
-
-<!-- Testing with MatFormFieldHarness -->
-
-<mat-form-field id="with-errors" appearance="fill">
-  <span class="custom-control">Custom control harness</span>
-  <input matInput [formControl]="requiredControl">
-
-  <mat-error>Error</mat-error>
-  <mat-hint align="start">Hint</mat-hint>
-</mat-form-field>
-
-
-<!-- Form field with hints -->
-
-<div class="example-container">
-  <mat-form-field hintLabel="Max 10 characters" appearance="fill">
-    <mat-label>Enter some input</mat-label>
-    <input matInput #input maxlength="10" placeholder="Ex. Nougat">
-    <mat-hint align="end">{{input.value.length}}/10</mat-hint>
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Select me</mat-label>
-    <mat-select>
-      <mat-option value="option">Option</mat-option>
-    </mat-select>
-    <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
-  </mat-form-field>
-</div>
-
-
-<!-- Form field with label -->
-
-<div class="example-container">
-  <form [formGroup]="options">
-    <mat-checkbox [formControl]="hideRequiredControl">Hide required marker</mat-checkbox>
-    <div>
-      <label>Float label: </label>
-      <mat-radio-group [formControl]="floatLabelControl">
-        <mat-radio-button value="auto">Auto</mat-radio-button>
-        <mat-radio-button value="always">Always</mat-radio-button>
-      </mat-radio-group>
-    </div>
-
-    <div class="example-form-fields">
-      <mat-form-field appearance="fill"
-          [hideRequiredMarker]="hideRequiredControl.value"
-          [floatLabel]="getFloatLabelValue()">
-        <input matInput placeholder="Simple placeholder" required>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" [floatLabel]="getFloatLabelValue()">
-        <mat-label>Both a label and a placeholder</mat-label>
-        <input matInput placeholder="Simple placeholder">
-      </mat-form-field>
-
-      <mat-form-field appearance="fill"
-          [hideRequiredMarker]="hideRequiredControl.value"
-          [floatLabel]="getFloatLabelValue()">
-        <mat-select required>
-          <mat-option>-- None --</mat-option>
-          <mat-option value="option">Option</mat-option>
-        </mat-select>
-        <mat-label><mat-icon>favorite</mat-icon> <b> Fancy</b> <i> label</i></mat-label>
-      </mat-form-field>
-    </div>
-  </form>
-</div>
-
-
-<!-- Simple form field -->
-
-<mat-form-field appearance="fill">
-  <mat-label>Input</mat-label>
-  <input matInput>
-</mat-form-field>
-<mat-form-field appearance="fill">
-  <mat-label>Select</mat-label>
-  <mat-select>
-    <mat-option value="one">First option</mat-option>
-    <mat-option value="two">Second option</mat-option>
-  </mat-select>
-</mat-form-field>
-<mat-form-field appearance="fill">
-  <mat-label>Textarea</mat-label>
-  <textarea matInput></textarea>
-</mat-form-field>
-
+<!-- <mat-form-field [appearance]="appearance">
+  <mat-label>{{ label }}</mat-label>
+  <input matInput [type]="hide ? 'password' : 'text'">
+  <span matTextPrefix>{{ prefixText }}</span>
+  <span matTextSuffix>{{ suffixText }}</span>
+  <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="ariaLabel" [attr.aria-pressed]="hide">
+    <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+  </button>
+  <mat-icon matSuffix>{{ suffixIcon }}</mat-icon>
+  <mat-error>{{ error }}</mat-error>
+  <mat-hint>{{ hint }}</mat-hint>
+</mat-form-field> -->
 
 
 <!-- Form field with prefix & suffix -->
-
+<!--
 <div class="example-container">
-  <mat-form-field appearance="fill">
-    <mat-label>Enter your password</mat-label>
-    <input matInput [type]="hide ? 'password' : 'text'">
-    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-    </button>
-  </mat-form-field>
+<mat-form-field appearance="fill">
+  <mat-label>Enter your password</mat-label>
+  <input matInput [type]="hide ? 'password' : 'text'">
+  <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+  </button>
+</mat-form-field>
 
-  <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label>Amount</mat-label>
-    <input matInput type="number" class="example-right-align" placeholder="0">
-    <span matTextPrefix>$&nbsp;</span>
-    <span matTextSuffix>.00</span>
-  </mat-form-field>
+<mat-form-field appearance="fill" floatLabel="always">
+  <mat-label>Amount</mat-label>
+  <input matInput type="number" class="example-right-align" placeholder="0">
+  <span matTextPrefix>$&nbsp;</span>
+  <span matTextSuffix>.00</span>
+</mat-form-field>
 </div>
+ -->
 
 
-<!-- Form field theming -->
 
-<form class="example-container" [formGroup]="theminfOptions" [style.fontSize.px]="getFontSize()">
-  <mat-form-field appearance="fill" [color]="theminfOptions.value.color">
-    <mat-label>Color</mat-label>
-    <mat-select formControlName="color">
-      <mat-option value="primary">Primary</mat-option>
-      <mat-option value="accent">Accent</mat-option>
-      <mat-option value="warn">Warn</mat-option>
-    </mat-select>
-  </mat-form-field>
 
-  <mat-form-field appearance="fill" [color]="theminfOptions.value.color">
-    <mat-label>Font size</mat-label>
-    <input matInput type="number" placeholder="Ex. 12" formControlName="fontSize" min="10">
-    <span matTextSuffix>px</span>
-    <mat-error *ngIf="theminfOptions.get('fontSize')?.invalid">Min size: 10px</mat-error>
-  </mat-form-field>
-</form>
+
+
+

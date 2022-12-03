@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CustomInputComponent } from './custom-input/custom-input.component';
 
 @Component({
   selector: 'app-root',
