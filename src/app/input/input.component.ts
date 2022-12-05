@@ -19,7 +19,11 @@ export class InputComponent implements OnInit {
   constructor() {}
   // constructor(private _formBuilder: FormBuilder, private _nonNullableFormBuilder: NonNullableFormBuilder) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('testParam_ngOnInit', this.testParam);
+  }
+
+  @Input() testParam: string | undefined;
 
   // fg: FormGroup  = new FormGroup({
   //   code: new FormControl('')
