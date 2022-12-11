@@ -20,7 +20,7 @@
 <ng-template #text>
   <mat-form-field [appearance]="appearance">
     <mat-label *ngIf="label !== ''">{{ label }}</mat-label>
-    <input matInput [type]="type" [value]="value">
+    <input matInput [type]="type" [formControl]="input">
     <span matTextPrefix *ngIf="prefixText !== ''">{{ prefixText }}</span>
     <span matTextSuffix *ngIf="suffixText !== ''">{{ suffixText }}</span>
     <button mat-icon-button matSuffix *ngIf="iconName !== ''" [attr.aria-label]="ariaLabel">
@@ -36,7 +36,7 @@
 <ng-template #password>
   <mat-form-field [appearance]="appearance">
     <mat-label *ngIf="label !== ''">{{ label }}</mat-label>
-    <input matInput [type]="hide ? 'password' : 'text'" [value]="value">
+    <input matInput [type]="hide ? 'password' : 'text'" [formControl]="input">
     <span matTextPrefix *ngIf="prefixText !== ''">{{ prefixText }}</span>
     <span matTextSuffix *ngIf="suffixText !== ''">{{ suffixText }}</span>
     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="ariaLabel" [attr.aria-pressed]="hide">

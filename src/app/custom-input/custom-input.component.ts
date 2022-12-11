@@ -24,15 +24,17 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 export class CustomInputComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder) {}
 
+  public input: FormControl = new FormControl('');
   ngOnInit(): void {
     console.log('testParam_ngOnInit', this.testParam);
+
+    this.input = new FormControl('', [
+      Validators.required
+    ]);
+    this.inputValueChanges();
   }
 
   @Input() testParam: string | undefined;
-
-  fg: FormGroup  = new FormGroup({
-    code: new FormControl('')
-  });
 
   /**
   * 画面表示するテキストやアイコン名
@@ -61,14 +63,21 @@ export class CustomInputComponent implements OnInit {
   @Input() ariaLabel = '';
 
   @Input()
-  public value: string = '';
+  public customValue: string = '';
+
   @Output()
   public valueChange = new EventEmitter<string>();
+
   @HostListener("blur", ["$event.target.value"])
   onBlur(){
-    this.valueChange.emit(this.value);
+    this.valueChange.emit(this.customValue);
   }
 
+  public inputValueChanges() {
+    this.input.valueChanges.subscribe((value: string) => {
+      this.customValue = value;
+    });
+  }
 
   email = new FormControl('', [Validators.required, Validators.email]);
 
@@ -94,4 +103,4 @@ export class CustomInputComponent implements OnInit {
   getFloatLabelValue(): FloatLabelType {
     return this.floatLabelControl.value || 'auto';
   }
-  }
+}
