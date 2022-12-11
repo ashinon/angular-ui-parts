@@ -8,11 +8,10 @@
     </div>
   </div>
 
-  <!-- パスワード入力欄 -->
-  <div *ngIf="type === 'password'">
-    <div *ngTemplateOutlet="password">
-    </div>
-  </div>
+  <!-- TODO:: 数値入力欄 -->
+  <!-- TODO:: 日付入力欄 -->
+  <!-- TODO:: セレクトタグ -->
+
 </div>
 
 <!-- テキスト入力欄（テンプレート） -->
@@ -32,21 +31,8 @@
   </mat-form-field>
 </ng-template>
 
-<!-- パスワード入力欄（テンプレート） -->
-<ng-template #password>
-  <mat-form-field [appearance]="appearance">
-    <mat-label *ngIf="label !== ''">{{ label }}</mat-label>
-    <input matInput [type]="hide ? 'password' : 'text'" [formControl]="input">
-    <span matTextPrefix *ngIf="prefixText !== ''">{{ prefixText }}</span>
-    <span matTextSuffix *ngIf="suffixText !== ''">{{ suffixText }}</span>
-    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="ariaLabel" [attr.aria-pressed]="hide">
-      <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
-    </button>
-    <mat-icon matSuffix>{{ suffixIcon }}</mat-icon>
-    <mat-error>{{ error }}</mat-error>
-    <mat-hint>{{ hint }}</mat-hint>
-  </mat-form-field>
-</ng-template>
+<!-- TODO:: 数値入力欄（テンプレート） -->
+<!-- TODO:: 日付入力欄（テンプレート） -->
+<!-- TODO:: セレクトタグ（テンプレート） -->
 
-<!-- Form field with label -->
 
