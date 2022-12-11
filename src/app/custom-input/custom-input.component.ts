@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input, Output, ViewEncapsulation, EventEmitter} from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, ViewEncapsulation, EventEmitter, HostListener} from '@angular/core';
 // import { Inject, Injectable, ElementRef, EventEmitter, ViewChild, ViewEncapsulation, Optional, Self, CUSTOM_ELEMENTS_SCHEMA, Injector } from '@angular/core';
 // import { CommonModule } from '@angular/common';
 // import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -9,7 +9,7 @@ import { FloatLabelType, MatFormFieldAppearance, MatFormFieldModule } from '@ang
 // import { MatInputModule } from '@angular/material/input';
 // import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import { trigger, state, style, animate, transition } from '@angular/animations';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 // import { RouterModule } from '@angular/router';
 // import { HttpClientModule } from '@angular/common/http';
 
@@ -64,10 +64,8 @@ export class CustomInputComponent implements OnInit {
   public value: string = '';
   @Output()
   public valueChange = new EventEmitter<string>();
-
-  public onClick(): void
-  {
-    this.value = 'Component clicked!';
+  @HostListener("blur", ["$event.target.value"])
+  onBlur(){
     this.valueChange.emit(this.value);
   }
 
