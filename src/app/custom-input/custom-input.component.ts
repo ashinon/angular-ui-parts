@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input, Output} from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, ViewEncapsulation, EventEmitter} from '@angular/core';
 // import { Inject, Injectable, ElementRef, EventEmitter, ViewChild, ViewEncapsulation, Optional, Self, CUSTOM_ELEMENTS_SCHEMA, Injector } from '@angular/core';
 // import { CommonModule } from '@angular/common';
 // import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -16,9 +16,10 @@ import { FloatLabelType, MatFormFieldAppearance, MatFormFieldModule } from '@ang
 @Component({
   selector: 'app-custom-input',
   templateUrl: './custom-input.component.html',
-  styleUrls: ['./custom-input.component.scss'],
+  styleUrls: ['./custom-input.component.scss', '../../../src/styles.scss', '../../../src/theme.scss',],
   // standalone: true,
 	// imports: [CommonModule, HttpClientModule, RouterModule, FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatIconModule],
+  encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class CustomInputComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder) {}
@@ -36,29 +37,41 @@ export class CustomInputComponent implements OnInit {
   /**
   * 画面表示するテキストやアイコン名
   */
-   label = '';
-   prefixText = '';
-   suffixText = '';
-   suffixIcon = '';
-   error = '';
-   hint = '';
+   @Input() label = '';
+   @Input() prefixText = '';
+   @Input() suffixText = '';
+   @Input() suffixIcon = '';
+   @Input() error = '';
+   @Input() hint = '';
 
    /**
     * プロパティ値
    */
-   appearance: MatFormFieldAppearance = 'outline'; // 'fill' | 'outline';
+  @Input() appearance: MatFormFieldAppearance = 'outline'; // 'fill' | 'outline';
   //  color: ThemePalette;
-   floatLabel: FloatLabelType | undefined; // 'always' | 'auto'
-   hideRequiredMarker: boolean = true;
-   hintLabel: string = '';
+  @Input() floatLabel: FloatLabelType | undefined; // 'always' | 'auto'
+  @Input() hideRequiredMarker: boolean = true;
+  @Input() hintLabel: string = '';
    // subscriptSizing: SubscriptSizing = 'fixed'; // 'fixed' | 'dynamic';
-   maxlength: any;
-   placeholder = '';
-   type = '';
-   hide = true;
-   ariaLabel = '';
+  @Input() maxlength: any;
+  @Input() placeholder = '';
+  @Input() type = '';
+  @Input() iconName = '';
+  hide = true;
+  @Input() ariaLabel = '';
 
-  // Form field with error messages
+  @Input()
+  public value: string = '';
+  @Output()
+  public valueChange = new EventEmitter<string>();
+
+  public onClick(): void
+  {
+    this.value = 'Component clicked!';
+    this.valueChange.emit(this.value);
+  }
+
+
   email = new FormControl('', [Validators.required, Validators.email]);
 
   getErrorMessage() {
@@ -68,10 +81,11 @@ export class CustomInputComponent implements OnInit {
 
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
+
   // Testing with MatFormFieldHarness
   requiredControl = new FormControl('Initial value', [Validators.required]);
 
-  // Form field with label
+   // Form field with label
   hideRequiredControl = new FormControl(false);
   floatLabelControl = new FormControl('auto' as FloatLabelType);
   options = this._formBuilder.group({
@@ -82,15 +96,4 @@ export class CustomInputComponent implements OnInit {
   getFloatLabelValue(): FloatLabelType {
     return this.floatLabelControl.value || 'auto';
   }
-
-  // // Form field theming
-  // theminfOptions = this._nonNullableFormBuilder.group({
-  //   color: this._nonNullableFormBuilder.control('primary' as ThemePalette),
-  //   fontSize: this._nonNullableFormBuilder.control(16, Validators.min(10)),
-  // });
-
-  // getFontSize() {
-  //   return Math.max(10, this.theminfOptions.value.fontSize || 0);
-  // }
-
   }

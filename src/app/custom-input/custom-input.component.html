@@ -1,15 +1,52 @@
-<p>custom-input works!</p>
-{{ testParam }}
-<mat-form-field [appearance]="appearance">
-  <mat-label>{{ label }}</mat-label>
-  <input matInput [type]="hide ? 'password' : 'text'">
-  <span matTextPrefix>{{ prefixText }}</span>
-  <span matTextSuffix>{{ suffixText }}</span>
-  <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="ariaLabel" [attr.aria-pressed]="hide">
-    <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
-  </button>
-  <mat-icon matSuffix>{{ suffixIcon }}</mat-icon>
-  <mat-error>{{ error }}</mat-error>
-  <mat-hint>{{ hint }}</mat-hint>
-</mat-form-field>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<div class="wrapper">
+  <!-- テキスト入力欄 -->
+  <div *ngIf="type === 'text'">
+    <div *ngTemplateOutlet="text">
+    </div>
+  </div>
+
+  <!-- パスワード入力欄 -->
+  <div *ngIf="type === 'password'">
+    <div *ngTemplateOutlet="password">
+    </div>
+  </div>
+</div>
+
+<!-- テキスト入力欄（テンプレート） -->
+
+<ng-template #text>
+  <mat-form-field [appearance]="appearance">
+    <mat-label *ngIf="label !== ''">{{ label }}</mat-label>
+    <input matInput [type]="type">
+    <span matTextPrefix *ngIf="prefixText !== ''">{{ prefixText }}</span>
+    <span matTextSuffix *ngIf="suffixText !== ''">{{ suffixText }}</span>
+    <button mat-icon-button matSuffix *ngIf="iconName !== ''" [attr.aria-label]="ariaLabel">
+      <mat-icon>{{ iconName }}</mat-icon>
+    </button>
+    <mat-icon matSuffix>{{ suffixIcon }}</mat-icon>
+    <mat-error>{{ error }}</mat-error>
+    <mat-hint>{{ hint }}</mat-hint>
+  </mat-form-field>
+</ng-template>
+
+<!-- パスワード入力欄（テンプレート） -->
+<ng-template #password>
+  <mat-form-field [appearance]="appearance">
+    <mat-label *ngIf="label !== ''">{{ label }}</mat-label>
+    <input matInput [type]="hide ? 'password' : 'text'">
+    <span matTextPrefix *ngIf="prefixText !== ''">{{ prefixText }}</span>
+    <span matTextSuffix *ngIf="suffixText !== ''">{{ suffixText }}</span>
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="ariaLabel" [attr.aria-pressed]="hide">
+      <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+    </button>
+    <mat-icon matSuffix>{{ suffixIcon }}</mat-icon>
+    <mat-error>{{ error }}</mat-error>
+    <mat-hint>{{ hint }}</mat-hint>
+  </mat-form-field>
+</ng-template>
+
+<!-- Form field with label -->
 
