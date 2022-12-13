@@ -8,14 +8,15 @@
     </div>
   </div>
 
-  <!-- TODO:: 数値入力欄 -->
-  <!-- TODO:: 日付入力欄 -->
-  <!-- TODO:: セレクトタグ -->
+  <!-- 数値入力欄 -->
+  <div *ngIf="type === 'number'">
+    <div *ngTemplateOutlet="number">
+    </div>
+  </div>
 
 </div>
 
 <!-- テキスト入力欄（テンプレート） -->
-
 <ng-template #text>
   <mat-form-field [appearance]="appearance">
     <mat-label *ngIf="label !== ''">{{ label }}</mat-label>
@@ -25,14 +26,24 @@
     <button mat-icon-button matSuffix *ngIf="iconName !== ''" [attr.aria-label]="ariaLabel">
       <mat-icon>{{ iconName }}</mat-icon>
     </button>
-    <mat-icon matSuffix>{{ suffixIcon }}</mat-icon>
-    <mat-error>{{ error }}</mat-error>
-    <mat-hint>{{ hint }}</mat-hint>
+    <mat-icon matSuffix *ngIf="suffixIcon !== ''">{{ suffixIcon }}</mat-icon>
+    <mat-error *ngIf="error !== ''">{{ error }}</mat-error>
+    <mat-hint *ngIf="hint !== ''">{{ hint }}</mat-hint>
   </mat-form-field>
 </ng-template>
 
-<!-- TODO:: 数値入力欄（テンプレート） -->
-<!-- TODO:: 日付入力欄（テンプレート） -->
-<!-- TODO:: セレクトタグ（テンプレート） -->
-
-
+<!-- 数値入力欄（テンプレート） -->
+<ng-template #number>
+  <mat-form-field [appearance]="appearance">
+    <mat-label *ngIf="label !== ''">{{ label }}</mat-label>
+    <input matInput [type]="type" [formControl]="input">
+    <span matTextPrefix *ngIf="prefixText !== ''">{{ prefixText }}</span>
+    <span matTextSuffix *ngIf="suffixText !== ''">{{ suffixText }}</span>
+    <button mat-icon-button matSuffix *ngIf="iconName !== ''" [attr.aria-label]="ariaLabel">
+      <mat-icon>{{ iconName }}</mat-icon>
+    </button>
+    <mat-icon matSuffix *ngIf="suffixIcon !== ''">{{ suffixIcon }}</mat-icon>
+    <mat-error *ngIf="error !== ''">{{ error }}</mat-error>
+    <mat-hint *ngIf="hint !== ''">{{ hint }}</mat-hint>
+  </mat-form-field>
+</ng-template>

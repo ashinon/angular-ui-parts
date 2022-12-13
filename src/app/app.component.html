@@ -1,18 +1,19 @@
-<h3>normalConponent</h3>
+<h3>input</h3>
 <div style="width:400px; height: 100px;">
-  <app-input testParam="11111" [type]="'text'" [appearance]="'outline'" [label]="'ああああああ'"></app-input>
+  <app-custom-input [type]="'number'" [appearance]="'outline'" [label]="'あああああ'"></app-custom-input>
+</div>
+<div style="width:400px; height: 100px;">
+  <custom-input type="'number'" appearance="'outline'" label="'あああああ'"></custom-input>
 </div>
 <br>
 <br>
-<h3>webConponent</h3>
+<h3>select</h3>
 <div style="width:400px; height: 100px;">
-  <app-custom-input testParam="22222" [type]="'text'" [appearance]="'outline'" [label]="'いいいいい'"></app-custom-input>
+  <app-custom-select [options]=testOptions [label]="'ううううう'"></app-custom-select>
+</div>
+<div style="width:400px; height: 100px;">
+  <custom-select id="aaa" label="ううううう"></custom-select>
 </div>
 <br>
 <br>
-<h3>webConponent1</h3>
-<div style="width:400px; height: 100px;">
-  <custom-input test-param="33333" type="text" appearance="outline" label="ううううう"></custom-input>
-</div>
-<br>
-<br>
+
