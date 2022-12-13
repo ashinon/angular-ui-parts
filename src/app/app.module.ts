@@ -6,8 +6,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { CustomInputComponent } from './custom-input/custom-input.component';
-import { InputComponent } from './input/input.component';
-
 import { FormsModule, ReactiveFormsModule, FormBuilder, NonNullableFormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
 import { FloatLabelType, MatFormFieldAppearance, MatFormFieldModule } from '@angular/material/form-field';
 import { ThemePalette } from '@angular/material/core';
@@ -20,7 +18,6 @@ import { CustomSelectComponent } from './custom-select/custom-select.component';
 @NgModule({
   declarations: [
     AppComponent,
-    InputComponent,
     CustomInputComponent
   ],
   imports: [
