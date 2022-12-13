@@ -1,0 +1,15 @@
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<div class="wrapper">
+  <!-- セレクトタグ -->
+  <mat-form-field appearance="fill">
+    <mat-label *ngIf="label !== ''">{{ label }}</mat-label>
+    <!-- <mat-select [formControl]="fc" [(ngModel)]="selectedValue" name="name"> -->
+    <mat-select [formControl]="fc" name="name">
+        <mat-option>None</mat-option>
+      <mat-option *ngFor="let option of options" [value]="option.value">{{ option.label }}</mat-option>
+    </mat-select>
+    <!-- <mat-error *ngIf="error !== ''">{{ error }}</mat-error> -->
+  </mat-form-field>
+</div>
