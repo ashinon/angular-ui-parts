@@ -16,18 +16,3 @@ platformBrowserDynamic().bootstrapModule(AppModule)
   .catch((err: any) => console.error(err));
 
 
-(async () => {
-
-  const app = await createApplication({
-    providers: [
-      FormBuilder
-    ],
-  });
-
-  const customInput = createCustomElement(CustomInputComponent, {
-    injector: app.injector,
-  });
-
-  customElements.define('custom-input', customInput);
-
-})();

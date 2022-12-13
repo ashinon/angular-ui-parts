@@ -6,8 +6,6 @@ import { FloatLabelType, MatFormFieldAppearance } from '@angular/material/form-f
   selector: 'app-custom-input',
   templateUrl: './custom-input.component.html',
   styleUrls: ['./custom-input.component.scss', '../../../src/styles.scss', '../../../src/theme.scss',],
-  // standalone: true,
-	// imports: [CommonModule, HttpClientModule, RouterModule, FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatIconModule],
   encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class CustomInputComponent implements OnInit {

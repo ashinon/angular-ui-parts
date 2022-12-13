@@ -1,4 +1,4 @@
-import { Component, Inject, Injectable, } from '@angular/core';
+import { ApplicationRef, Component, Inject, Injectable, Injector, Type, } from '@angular/core';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -11,29 +11,58 @@ import { FloatLabelType, MatFormFieldAppearance, MatFormFieldModule } from '@ang
 import { ThemePalette } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import {MatNativeDateModule} from '@angular/material/core';
-import {MaterialExampleModule} from '../material.module';
+import { MatSelectModule } from '@angular/material/select';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MaterialExampleModule } from '../material.module';
 import { CustomSelectComponent } from './custom-select/custom-select.component';
+import { createCustomElement } from '@angular/elements';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CustomInputComponent
+    CustomInputComponent,
+    CustomSelectComponent
   ],
   imports: [
     CommonModule,
     HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
-    FormsModule, ReactiveFormsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    OverlayModule,
     MatNativeDateModule,
-    MatFormFieldModule, MatInputModule, MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatSelectModule,
     MaterialExampleModule,
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
-  bootstrap: []
 })
 export class AppModule {
-  ngDoBootstrap() {}
+  ngDoBootstrap(appRef: ApplicationRef): void {
+    if (document.querySelector('app-root')) {
+      appRef.bootstrap(AppComponent);
+    }
+  }
+
+  constructor(injector: Injector) {
+    const outputTarget = [
+      { customTagName: 'custom-input', component: CustomInputComponent},
+      { customTagName: 'custom-select', component: CustomSelectComponent},
+    ];
+    outputTarget.forEach((target) => {
+      AppModule.createAndDefine(target.customTagName, target.component, injector);
+    });
+  }
+
+  static createAndDefine(customTagName: string, component: Type<any>, injector: Injector) {
+    const customElem = createCustomElement(component, {
+      injector: injector,
+    });
+    customElements.define(customTagName, customElem);
+  };
+
 }
